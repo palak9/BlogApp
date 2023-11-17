@@ -49,35 +49,41 @@
 					<button class="btn btn-outline-success btn-sm mr-4" type="submit">Search</button>
 				</form>
 				<a type="button" class="btn btn-info btn-sm mr-2" th:href="@{/blogs/new}">CREATE POST</a>
-				<button type="button" class="btn btn-info btn-sm" >SIGN OUT</button>
+				<button type="button" class="btn btn-info btn-sm">SIGN OUT</button>
 			</div>
 		</nav>
 
-		<br><br><br><br>
-
-		<div class="col-sm">
-			<table class="table">
-				<tr th:each="card : ${posts}">
-					<td>
-						<div class="card " style="width: 67rem;">
-							<div class="card-header">
-								<p class="card-title" th:text="${card.title}">Default Title</p>
-								<p class="card-subtitle mb-2 text-muted"
-									th:text="${card.category} + '  |  ' +  ${card.date}">Card subtitle</p>
-							</div>
-							<div class="card-body">
-								<p th:text="${card.content}">Card content goes here.</p>
-							</div>
-							<div class="text-right col-md-12 col-xs-10 offset-xs-1  pt-2 botton-right">
-							<button type="button" class="btn btn-outline-success btn-sm">UPDATE</button>
-							</div>
-							<br>
-						</div>
-					</td>
-				</tr>
-			</table>
+		<div>
+			<h2>Please Login</h2>
+			<br />
 		</div>
-	</div>
+		<div>
+			<h4><a th:href="/@{/oauth2/authorization/google}">Login with Google</a></h4>
+		</div>
+		<div>
+			<p>OR</p>
+		</div>
+
+		<form th:action="@{/login}" method="post" style="max-width: 400px; margin: 0 auto;">
+			<div class="border border-secondary rounded p-3">
+				<div th:if="${param.error}">
+					<p class="text-danger">Invalid username or password.</p>
+				</div>
+				<div th:if="${param.logout}">
+					<p class="text-warning">You have been logged out.</p>
+				</div>
+				<div>
+					<p><input type="email" name="email" required class="form-control" placeholder="E-mail" /></p>
+				</div>
+				<div>
+					<p><input type="password" name="pass" required class="form-control" placeholder="Password" /></p>
+				</div>
+				<div>
+					<p><input type="submit" value="Login" class="btn btn-primary" /></p>
+				</div>
+			</div>
+		</form>
+
 </body>
 
 </html>

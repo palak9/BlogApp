@@ -1,5 +1,7 @@
 package com.example.SocialMedia.app;
 
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -15,16 +17,25 @@ public class Post {
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private long id;
 
-	@Column(name = "post_content")
+	@Column(name = "post_content", columnDefinition = "NVARCHAR(MAX)")
 	private String content;
-	
+
 	@Column(name = "post_title")
 	private String title;
 
-	public Post(long id, String content) {
+	@Column(name = "post_category")
+	private String category;
+
+	@Column(name = "post_date")
+	private Date date;
+
+	public Post(long id, String content, String title, String category, Date date) {
 		super();
 		this.id = id;
 		this.content = content;
+		this.title = title;
+		this.category = category;
+		this.date = date;
 	}
 
 	public Post() {
@@ -55,6 +66,20 @@ public class Post {
 		this.title = title;
 	}
 
-	
-	
+	public String getCategory() {
+		return category;
+	}
+
+	public void setCategory(String category) {
+		this.category = category;
+	}
+
+	public Date getDate() {
+		return date;
+	}
+
+	public void setDate(Date date) {
+		this.date = date;
+	}
+
 }
